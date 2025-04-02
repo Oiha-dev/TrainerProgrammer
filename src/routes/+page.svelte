@@ -1,3 +1,7 @@
+<script>
+    import Field from "./Field.svelte";
+</script>
+
 <svelte:head>
     <title>Boilerplate</title>
     <meta name="description" content="A very simple boirlerplate for sveltekit" />
@@ -13,5 +17,4 @@
     <meta property="og:type" content="website" />
 </svelte:head>
 
-<h1>Welcome to my SvelteKit boilerplate</h1>
-<p>Visit <a href="https://portfolio-rodolphe-andrieux.vercel.app/">my portfolio</a></p>
+<Field/>

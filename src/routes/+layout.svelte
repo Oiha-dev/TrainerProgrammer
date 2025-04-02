@@ -16,8 +16,8 @@
 
 <div class="app">
     <main>
-        <Canvas />
-        <slot />
+        <Canvas/>
+        <slot/>
     </main>
 </div>
 
@@ -37,7 +37,6 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-image: url("/noise.svg");
         background-size: 64px 64px;
         background-repeat: repeat;
         opacity: 0.31;
