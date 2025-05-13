@@ -51,7 +51,7 @@
         flex-direction: column;
         padding: 0;
         width: 100%;
-        max-width: 72rem;
+        max-width: 90rem; /* Increased from 72rem for more space */
         margin: 0 auto;
         box-sizing: border-box;
         position: relative; /* For proper stacking context */
@@ -70,4 +70,3 @@
         }
     }
 </style>
-

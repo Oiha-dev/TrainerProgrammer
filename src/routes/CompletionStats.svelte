@@ -249,17 +249,17 @@
 
 <style>
     .completion-stats {
-        width: 90%;
-        height: 75%;
+        width: 92%; /* Increased from 90% */
+        height: 78%; /* Increased from 75% */
         background-color: #2C2C2C;
-        border-radius: 16px;
-        padding: 24px;
+        border-radius: 20px; /* Increased from 16px */
+        padding: 32px; /* Increased from 24px */
         display: flex;
         flex-direction: column;
         color: white;
         overflow-y: auto;
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+        overflow-x: hidden;
+        box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
@@ -267,9 +267,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 24px;
+        margin-bottom: 32px; /* Increased from 24px */
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 20px; /* Increased from 16px */
     }
     
     .completion-header h2 {
@@ -292,19 +292,19 @@
     .language-badge {
         background-color: var(--third-color-dark);
         color: white;
-        padding: 6px 12px;
-        border-radius: 20px;
+        padding: 8px 16px; /* Increased from 6px 12px */
+        border-radius: 24px; /* Increased from 20px */
         font-size: 14px;
         font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        box-shadow: 0 3px 5px rgba(0,0,0,0.15); /* Enhanced shadow */
     }
     
     .status-badge {
-        padding: 6px 12px;
-        border-radius: 20px;
+        padding: 8px 16px; /* Increased from 6px 12px */
+        border-radius: 24px; /* Increased from 20px */
         font-size: 14px;
         font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        box-shadow: 0 3px 5px rgba(0,0,0,0.15); /* Enhanced shadow */
     }
     
     .status-badge.perfect {
@@ -320,14 +320,14 @@
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-bottom: 24px;
+        gap: 20px; /* Increased from 16px */
+        margin-bottom: 32px; /* Increased from 24px */
     }
     
     .stat-card {
         background-color: rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        padding: 16px;
+        border-radius: 16px; /* Increased from 12px */
+        padding: 20px; /* Increased from 16px */
         text-align: center;
         transition: transform 0.2s ease, background-color 0.2s ease;
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -352,32 +352,32 @@
     
     .chart-container {
         flex: 1;
-        border-radius: 12px;
-        padding: 15px;
+        border-radius: 16px; /* Increased from 12px */
+        padding: 20px; /* Increased from 15px */
         display: flex;
         justify-content: center;
         align-items: center;
-        max-height: 350px;
-        max-width: 100%; /* Ensure container doesn't exceed parent width */
+        max-height: 400px; /* Increased from 350px */
+        max-width: 100%;
     }
     
     .actions {
         display: flex;
         justify-content: center;
-        margin-top: 24px;
+        margin-top: 32px; /* Increased from 24px */
     }
     
     .restart-button {
         background-color: var(--third-color-dark);
         color: white;
         border: none;
-        padding: 12px 28px;
-        border-radius: 8px;
+        padding: 14px 32px; /* Increased from 12px 28px */
+        border-radius: 12px; /* Increased from 8px */
         font-size: 16px;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.2s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
         letter-spacing: 0.03em;
     }
     
@@ -406,7 +406,7 @@
     @media (max-width: 768px) {
         .completion-stats {
             width: 95%;
-            padding: 16px;
+            padding: 20px; /* Increased from 16px */
         }
         
         .completion-header {

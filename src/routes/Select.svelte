@@ -51,9 +51,9 @@
 
 <style>
     .component {
-        border-radius: 8px;
+        border-radius: 12px; /* Increased from 8px */
         background-color: var(--first-color-dark);
-        width: 140px;
+        width: 170px; /* Increased from 140px */
         box-sizing: border-box;
     }
 
@@ -64,8 +64,8 @@
 
     .dropdown {
         width: 100%;
-        padding: 10px 15px;
-        border-radius: 19px;
+        padding: 12px 18px; /* Increased from 10px 15px */
+        border-radius: 24px; /* Increased from 19px */
         font-size: 16px;
         background-color: var(--third-color-dark);
         border: none;
@@ -75,7 +75,7 @@
         justify-content: space-between;
         align-items: center;
         transition: background-color 0.2s ease, transform 0.1s ease;
-        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     }
     
     .dropdown:hover {
@@ -104,10 +104,10 @@
         width: 100%;
         background-color: var(--first-color-dark);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
         z-index: 1000;
-        margin-top: 8px;
-        border-radius: 8px;
+        margin-top: 10px; /* Increased from 8px */
+        border-radius: 12px; /* Increased from 8px */
         overflow: hidden;
         animation: fadeIn 0.2s ease;
     }
@@ -118,7 +118,7 @@
     }
 
     .option-item {
-        padding: 10px 15px;
+        padding: 12px 18px; /* Increased from 10px 15px */
         cursor: pointer;
         color: white;
         transition: background-color 0.2s ease;
@@ -139,13 +139,14 @@
         }
 
         .dropdown {
-            padding: 8px 12px;
+            padding: 10px 14px; /* Increased from 8px 12px */
             font-size: 14px;
         }
 
         .option-item {
-            padding: 8px 12px;
+            padding: 10px 14px; /* Increased from 8px 12px */
             font-size: 14px;
         }
     }
 </style>
+

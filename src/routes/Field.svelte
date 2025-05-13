@@ -283,29 +283,29 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 700px;
-        height: 500px;
+        width: 850px;  /* Increased from 700px */
+        height: 600px; /* Increased from 500px */
         background-color: var(--first-color-dark);
-        border-radius: 19px;
+        border-radius: 24px; /* Increased from 19px */
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        padding: 24px;
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25); /* Enhanced shadow */
+        padding: 32px; /* Increased from 24px */
         transition: box-shadow 0.3s ease;
     }
 
     .top-section {
-        width: 90%;
+        width: 92%; /* Increased from 90% */
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 24px;
+        margin-bottom: 32px; /* Increased from 24px */
     }
 
     .stats {
         display: flex;
-        gap: 24px;
+        gap: 30px; /* Increased from 24px */
     }
 
     .stat {
@@ -313,9 +313,9 @@
         flex-direction: column;
         align-items: center;
         background-color: rgba(255, 255, 255, 0.08);
-        padding: 10px 16px;
-        border-radius: 12px;
-        min-width: 80px;
+        padding: 14px 20px; /* Increased from 10px 16px */
+        border-radius: 16px; /* Increased from 12px */
+        min-width: 95px; /* Increased from 80px */
         transition: transform 0.2s ease, background-color 0.2s ease;
     }
 
@@ -339,13 +339,13 @@
     }
 
     .typing-container {
-        width: 90%;
-        height: 75%;
+        width: 92%; /* Increased from 90% */
+        height: 78%; /* Increased from 75% */
         position: relative;
-        border-radius: 16px;
+        border-radius: 20px; /* Increased from 16px */
         background-color: #2C2C2C;
         overflow: hidden;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -434,10 +434,10 @@
     @media (max-width: 768px) {
         .field {
             width: 95%;
-            max-width: 500px;
-            height: 80vh;
-            max-height: 600px;
-            padding: 16px;
+            max-width: 600px; /* Increased from 500px */
+            height: 85vh; /* Increased from 80vh */
+            max-height: 700px; /* Increased from 600px */
+            padding: 20px; /* Increased from 16px */
         }
 
         .top-section {
@@ -513,3 +513,4 @@
         }
     }
 </style>
+
