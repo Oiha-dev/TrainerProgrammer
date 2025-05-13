@@ -402,5 +402,89 @@
             align-items: flex-start;
         }
     }
-</style>
 
+    @media (max-width: 768px) {
+        .completion-stats {
+            width: 95%;
+            padding: 16px;
+        }
+        
+        .completion-header {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+        
+        .completion-header h2 {
+            font-size: 20px;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-card {
+            padding: 12px;
+        }
+        
+        .stat-value {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+        }
+        
+        .chart-container {
+            padding: 10px;
+            max-height: 250px;
+        }
+        
+        canvas {
+            width: 100%;
+            height: auto;
+        }
+        
+        .restart-button {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    }
+    
+    @media (max-width: 380px) {
+        .completion-stats {
+            padding: 12px;
+            height: 80%;
+        }
+        
+        .completion-header h2 {
+            font-size: 18px;
+        }
+        
+        .language-badge, .status-badge {
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+        
+        .stats-grid {
+            gap: 8px;
+            grid-template-columns: 1fr;
+        }
+        
+        .stat-card {
+            padding: 10px;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+        }
+        
+        .chart-container {
+            max-height: 200px;
+        }
+    }
+</style>

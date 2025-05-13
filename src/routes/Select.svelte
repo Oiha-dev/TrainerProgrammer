@@ -131,4 +131,21 @@
     .option-item.selected {
         font-weight: 500;
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .component {
+            width: 100%;
+        }
+
+        .dropdown {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .option-item {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+    }
 </style>

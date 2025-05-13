@@ -56,4 +56,18 @@
         box-sizing: border-box;
         position: relative; /* For proper stacking context */
     }
+
+    @media (max-width: 768px) {
+        main {
+            padding: 0 10px;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 380px) {
+        main {
+            padding: 0 5px;
+        }
+    }
 </style>
+

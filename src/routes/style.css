@@ -186,6 +186,72 @@ button:focus:not(:focus-visible) {
 	}
 }
 
+/* Enhanced Mobile Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    pre {
+        font-size: 14px;
+        padding: var(--space-sm);
+        border-radius: var(--radius-sm);
+    }
+
+    input, textarea, select, button {
+        padding: calc(var(--space-sm) * 0.8) var(--space-sm);
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    pre {
+        font-size: 13px;
+        padding: calc(var(--space-sm) * 0.7);
+    }
+
+    input, textarea, select, button {
+        padding: calc(var(--space-sm) * 0.7) var(--space-sm);
+        font-size: 14px;
+    }
+}
+
+/* Fix for potential scrolling issues on mobile */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        position: relative;
+        height: 100%;
+    }
+    
+    /* Ensure app container properly handles mobile view */
+    .app {
+        min-height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+}
+
 /* Accessibility */
 .visually-hidden {
 	border: 0;
@@ -198,3 +264,4 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+
