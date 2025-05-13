@@ -1,11 +1,26 @@
-version: '3'
+version: "3.9"
 
 services:
-  boiler:
+  app:
+    container_name: ${APP_NAME}
     build: .
-    image: boiler
-    ports:
-        - "3000:3000"
-    volumes:
-        - ./:/usr/src/app
-        - /usr/src/app/node_modules
+    image: ${APP_NAME}:latest
+    restart: unless-stopped
+    networks:
+      - shared-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${APP_NAME}.rule=Host(`${APP_NAME}.manifesto-app.fr`)"
+      - "traefik.http.services.${APP_NAME}.loadbalancer.server.port=3000"
+      - "traefik.http.routers.${APP_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${APP_NAME}.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.${APP_NAME}-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.${APP_NAME}-http.rule=Host(`${APP_NAME}.manifesto-app.fr`)"
+      - "traefik.http.routers.${APP_NAME}-http.entrypoints=web"
+      - "traefik.http.routers.${APP_NAME}-http.middlewares=${APP_NAME}-redirect"
+    environment:
+      NODE_ENV: production
+
+networks:
+  shared-network:
+    external: true

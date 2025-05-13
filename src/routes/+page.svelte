@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>Boilerplate</title>
+    <title>Trainer Programmer</title>
     <meta name="description" content="A very simple boirlerplate for sveltekit" />
 
     <!-- SEO -->
