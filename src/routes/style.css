@@ -5,28 +5,65 @@
 	--color-text: rgba(0, 0, 0, 0.8);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
-	font-family: var(--font-body), serif;
-	color: var(--color-text);
 	--bg-color-dark: #2C2C2C;
 	--first-color-dark: #1E1E1E;
 	--second-color-dark: #8dd5c3;
 	--third-color-dark: #3DCCA0;
 	--font-color-dark: #ededed;
 	--font2-color-dark: #070707;
-	--font-family: sans-serif;
+	
+	/* Common spacing variables */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	
+	/* Border radius */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+	--radius-round: 50%;
+	
+	/* Shadows */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+	
+	font-family: var(--font-body);
+	color: var(--font-color-dark);
 }
 
-/*::-webkit-scrollbar {*/
-/*	display: none;*/
-/*}*/
+/* Global reset */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
 
-/*html {*/
-/*	scrollbar-width: none;*/
-/*	scrollbar-color: transparent transparent;*/
-/*}*/
+/* Global scrollbar styling */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--third-color-dark) rgba(0, 0, 0, 0.2);
+}
 
-body {
-	-ms-overflow-style: none;
+/* Custom scrollbar for Chrome/Edge/Safari */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--third-color-dark);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #4ad8a8;
 }
 
 body {
@@ -35,75 +72,121 @@ body {
 	background-attachment: fixed;
 	background-color: var(--bg-color-dark);
 	background-size: 100vw 100vh;
-}
-
-h1,
-h2,
-p {
-	font-weight: 400;
-}
-
-p {
 	line-height: 1.5;
+	-ms-overflow-style: none;
+	font-size: 16px;
 }
 
-a {
-	color: var(--first-color-dark);
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
+	line-height: 1.2;
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+	color: var(--font-color-dark);
 }
 
 h1 {
 	font-size: 2rem;
-	text-align: center;
 }
 
 h2 {
-	font-size: 1rem;
+	font-size: 1.5rem;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+	line-height: 1.6;
+}
+
+a {
+	color: var(--third-color-dark);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: var(--second-color-dark);
 }
 
 ul {
 	list-style-type: none;
 	padding: 0;
+	margin: 0 0 var(--space-md) 0;
 }
 
+/* Code blocks */
 pre {
 	font-size: 16px;
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
+	font-family: var(--font-mono);
+	background-color: var(--first-color-dark);
+	border-radius: var(--radius-md);
+	padding: var(--space-md);
 	overflow-x: auto;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	color: var(--font-color-dark);
+	margin: var(--space-md) 0;
 }
 
+code {
+	font-family: var(--font-mono);
+}
+
+/* Layout utilities */
 .text-column {
-	display: flex;
-	max-width: 48rem;
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
+	max-width: var(--column-width);
+	margin: var(--column-margin-top) auto 0 auto;
+	padding: 0 var(--space-md);
 }
 
-input,
-button {
+/* Form elements */
+input, textarea, select, button {
 	font-size: inherit;
 	font-family: inherit;
+	padding: var(--space-sm) var(--space-md);
+	border-radius: var(--radius-md);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background-color: var(--first-color-dark);
+	color: var(--font-color-dark);
+	transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+	outline: none;
+	border-color: var(--third-color-dark);
+	box-shadow: 0 0 0 2px rgba(61, 204, 160, 0.2);
+}
+
+button {
+	cursor: pointer;
+	background-color: var(--third-color-dark);
+	color: var(--font2-color-dark);
+	border: none;
+	font-weight: 500;
+}
+
+button:hover {
+	background-color: var(--second-color-dark);
 }
 
 button:focus:not(:focus-visible) {
 	outline: none;
 }
 
+/* Responsive adjustments */
 @media (min-width: 720px) {
 	h1 {
 		font-size: 2.4rem;
 	}
+	
+	.text-column {
+		padding: 0 var(--space-lg);
+	}
 }
 
+/* Accessibility */
 .visually-hidden {
 	border: 0;
 	clip: rect(0 0 0 0);

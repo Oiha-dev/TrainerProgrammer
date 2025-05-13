@@ -28,6 +28,7 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        isolation: isolate; /* Create new stacking context */
     }
 
     .app::before {
@@ -41,6 +42,7 @@
         background-repeat: repeat;
         opacity: 0.31;
         z-index: -1;
+        pointer-events: none; /* Ensures clicks pass through */
     }
 
     main {
@@ -52,5 +54,6 @@
         max-width: 72rem;
         margin: 0 auto;
         box-sizing: border-box;
+        position: relative; /* For proper stacking context */
     }
 </style>

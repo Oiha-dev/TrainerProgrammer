@@ -64,43 +64,71 @@
 
     .dropdown {
         width: 100%;
-        padding: 10px 30px 10px 15px;
+        padding: 10px 15px;
         border-radius: 19px;
         font-size: 16px;
         background-color: var(--third-color-dark);
-        border-bottom: 4px solid var(--bg-color-dark);
+        border: none;
         color: white;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .dropdown:hover {
+        background-color: #45d4a8;
+        transform: translateY(-1px);
+    }
+    
+    .dropdown:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
     }
 
     .select-arrow {
         pointer-events: none;
         color: var(--font-color-dark);
-        font-size: 14px;
+        font-size: 12px;
+        transition: transform 0.2s ease;
+    }
+    
+    .dropdown:hover .select-arrow {
+        transform: translateY(2px);
     }
 
     .options-list {
         position: absolute;
         width: 100%;
         background-color: var(--first-color-dark);
-        border: 1px solid var(--bg-color-dark);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         z-index: 1000;
-        margin-top: 5px;
+        margin-top: 8px;
         border-radius: 8px;
+        overflow: hidden;
+        animation: fadeIn 0.2s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .option-item {
         padding: 10px 15px;
         cursor: pointer;
         color: white;
+        transition: background-color 0.2s ease;
     }
 
     .option-item:hover, .option-item.selected {
         background-color: var(--third-color-dark);
-        border-radius: 4px;
+    }
+    
+    .option-item.selected {
+        font-weight: 500;
     }
 </style>

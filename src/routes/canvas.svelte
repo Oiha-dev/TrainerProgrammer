@@ -26,7 +26,9 @@
         width: 100%;
         height: 100%;
         z-index: -10;
+        display: block; /* Removes potential inline space */
+        backface-visibility: hidden; /* Performance optimization */
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0); /* Hardware acceleration */
     }
 </style>
-
-
