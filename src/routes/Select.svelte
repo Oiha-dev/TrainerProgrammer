@@ -51,9 +51,10 @@
 
 <style>
     .component {
-        padding: 1em;
         border-radius: 8px;
         background-color: var(--first-color-dark);
+        width: 140px;
+        box-sizing: border-box;
     }
 
     .select-container {

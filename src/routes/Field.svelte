@@ -82,12 +82,12 @@
         for (let i = 0; i < sampleText.length; i++) {
             if (i < typedText.length) {
                 if (typedText[i] === sampleText[i]) {
-                    result += `<span class="correct">${sampleText[i]}</span>`;
+                    result += `<span class="correct">${sampleText[i] === ' ' ? '&nbsp;' : (sampleText[i] === '\n' ? '<br>' : sampleText[i])}</span>`;
                 } else {
-                    result += `<span class="incorrect">${sampleText[i]}</span>`;
+                    result += `<span class="incorrect">${sampleText[i] === ' ' ? '&nbsp;' : (sampleText[i] === '\n' ? '<br>' : sampleText[i])}</span>`;
                 }
             } else {
-                result += sampleText[i];
+                result += sampleText[i] === ' ' ? '&nbsp;' : (sampleText[i] === '\n' ? '<br>' : sampleText[i]);
             }
         }
         formattedText = result;
@@ -131,6 +131,57 @@
         return `${minutes}:${secs.toString().padStart(2, '0')}`;
     }
 
+    // Add handleKeyDown for 4-spaces support and to handle Enter/Return
+    function handleKeyDown(event) {
+        if (event.key === "Tab") {
+            event.preventDefault();
+            const textarea = textareaElement;
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            // Insert 4 spaces at cursor
+            const spaces = "    ";
+            typedText = typedText.slice(0, start) + spaces + typedText.slice(end);
+            textarea.value = typedText;
+            // Move cursor after the 4 spaces
+            textarea.selectionStart = textarea.selectionEnd = start + spaces.length;
+            updateFormattedText();
+            handleInput({ target: textarea });
+        } else if (event.key === "Enter") {
+            event.preventDefault();
+            
+            // Get current cursor position
+            const cursorPos = textareaElement.selectionStart;
+            
+            // Find the next newline in sample text
+            const nextNewlinePos = sampleText.indexOf('\n', cursorPos);
+            
+            if (nextNewlinePos !== -1) {
+                // Calculate how many spaces we need to add to reach the end of line
+                const spacesToAdd = nextNewlinePos - cursorPos;
+                
+                if (spacesToAdd > 0) {
+                    // Add spaces to fill the current line, plus a newline character
+                    const fillerSpaces = '‎'.repeat(spacesToAdd);
+                    typedText = typedText.slice(0, cursorPos) + fillerSpaces + '\n' + typedText.slice(cursorPos);
+                } else {
+                    // Just add the newline if we're already at the end of line
+                    typedText = typedText.slice(0, cursorPos) + '\n' + typedText.slice(cursorPos);
+                }
+                
+                // Update textarea
+                textareaElement.value = typedText;
+                
+                // Set cursor position after the newline
+                const newCursorPos = cursorPos + spacesToAdd + 1;
+                textareaElement.selectionStart = textareaElement.selectionEnd = newCursorPos;
+                
+                // Update the formatting and stats
+                updateFormattedText();
+                handleInput({ target: textareaElement });
+            }
+        }
+    }
+
     // Cleanup on component destruction
     onDestroy(() => {
         clearInterval(timer);
@@ -167,6 +218,7 @@
             class="text-input" 
             placeholder=""
             on:input={handleInput}
+            on:keydown={handleKeyDown}
             spellcheck="false"
             autocomplete="off"
             autocorrect="off"
@@ -194,17 +246,16 @@
     }
 
     .top-section {
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 5%;
     }
 
     .stats {
         display: flex;
         gap: 24px;
-        margin-right: 20px;
     }
 
     .stat {
@@ -227,6 +278,8 @@
         color: rgba(255, 255, 255, 0.7);
         font-size: 14px;
         margin-top: 2px;
+        min-width: 70px; /* Added for consistent width */
+        text-align: center; /* Added to center text */
     }
 
     .typing-container {
@@ -249,6 +302,12 @@
         line-height: 1.6;
         overflow-y: auto;
         box-sizing: border-box;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        user-select: none;
     }
 
     .text-input {
@@ -259,14 +318,14 @@
         height: 100%;
         padding: 16px;
         background-color: transparent;
-        color: transparent;
-        caret-color: white;
+        color: transparent; /* Hide user input text */
+        caret-color: white; /* Caret remains visible */
         border: none;
         resize: none;
         font-family: monospace;
         font-size: 16px;
         line-height: 1.6;
-        z-index: 10;
+        z-index: 2;
         box-sizing: border-box;
     }
 
@@ -292,13 +351,13 @@
         opacity: 0;
     }
 
-    .correct {
-        color: var(--third-color-dark);
+    :global(.correct) {
+        color: var(--third-color-dark); /* Use theme variable for correct */
         background-color: rgba(61, 204, 160, 0.1);
     }
 
-    .incorrect {
-        color: #ff6b6b;
+    :global(.incorrect) {
+        color: #ff4d6d; /* Reddish for incorrect */
         background-color: rgba(255, 107, 107, 0.1);
         text-decoration: underline;
     }
