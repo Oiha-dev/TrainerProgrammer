@@ -165,56 +165,68 @@
 
     // Add handleKeyDown for 4-spaces support and to handle Enter/Return
     function handleKeyDown(event) {
+        // Allow Backspace, Enter and Tab events
+        if (
+            event.key !== "Enter" &&
+            event.key !== "Tab" &&
+            event.key !== "Backspace" &&
+            event.key.length === 1
+        ) {
+            const currentText = textareaElement.value;
+            const typedLines = currentText.split("\n");
+            const currentLineIndex = typedLines.length - 1;
+            const currentLine = typedLines[currentLineIndex] || "";
+            const expectedLines = sampleText.split("\n");
+            const expectedLine = expectedLines[currentLineIndex] || "";
+            if (currentLine.length >= expectedLine.length) {
+                event.preventDefault();
+                return;
+            }
+        }
+
         if (event.key === "Tab") {
+            // Block Tab if current line is already complete
+            const currentText = textareaElement.value;
+            const typedLines = currentText.split("\n");
+            const currentLineIndex = typedLines.length - 1;
+            const currentLine = typedLines[currentLineIndex] || "";
+            const expectedLines = sampleText.split("\n");
+            const expectedLine = expectedLines[currentLineIndex] || "";
+            if (currentLine.length >= expectedLine.length) {
+                event.preventDefault();
+                return;
+            }
+            // Otherwise, insert 4 spaces
             event.preventDefault();
             const textarea = textareaElement;
             const start = textarea.selectionStart;
             const end = textarea.selectionEnd;
-            // Insert 4 spaces at cursor
             const spaces = "    ";
             typedText = typedText.slice(0, start) + spaces + typedText.slice(end);
             textarea.value = typedText;
-            // Move cursor after the 4 spaces
             textarea.selectionStart = textarea.selectionEnd = start + spaces.length;
             updateFormattedText();
             handleInput({ target: textarea });
         } else if (event.key === "Enter") {
             event.preventDefault();
-
-            // Get current cursor position
             const cursorPos = textareaElement.selectionStart;
-
-            // Find the next newline in sample text
             const nextNewlinePos = sampleText.indexOf('\n', cursorPos);
-
             if (nextNewlinePos !== -1) {
-                // Calculate how many spaces we need to add to reach the end of line
                 const spacesToAdd = nextNewlinePos - cursorPos;
-
                 if (spacesToAdd > 0) {
-                    // Add spaces to fill the current line, plus a newline character
                     const fillerSpaces = '‎'.repeat(spacesToAdd);
                     typedText = typedText.slice(0, cursorPos) + fillerSpaces + '\n' + typedText.slice(cursorPos);
                 } else {
-                    // Just add the newline if we're already at the end of line
                     typedText = typedText.slice(0, cursorPos) + '\n' + typedText.slice(cursorPos);
                 }
-
-                // Update textarea
                 textareaElement.value = typedText;
-
-                // Set cursor position after the newline
                 const newCursorPos = cursorPos + spacesToAdd + 1;
                 textareaElement.selectionStart = textareaElement.selectionEnd = newCursorPos;
-
-                // Update the formatting and stats
                 updateFormattedText();
                 handleInput({ target: textareaElement });
             }
         }
-    }
-
-    // Cleanup on component destruction
+    }    // Cleanup on component destruction
     onDestroy(() => {
         clearInterval(timer);
         unsubscribeLanguage();
